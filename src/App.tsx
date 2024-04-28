@@ -2,13 +2,15 @@ import { useRef, useState } from "react";
 
 import debounce from "@/utils/debounce";
 import useGetArtists from "@/api/useGetArtists";
+import useGetArtistsEvents from "@/api/useGetArtistsEvents";
 
 import LogoSVG from "@/assets/logo.svg?react";
 
 const App: React.FunctionComponent = () => {
   const searchRef = useRef<HTMLInputElement>(null);
   const [artistName, setArtistName] = useState<string>("");
-  const { artists, isLoading, error } = useGetArtists(artistName);
+  const { artist, isLoading, error } = useGetArtists(artistName);
+  const { events } = useGetArtistsEvents(artistName);
 
   const handleSearch = debounce(() => {
     setArtistName(searchRef.current?.value || "");
@@ -36,9 +38,11 @@ const App: React.FunctionComponent = () => {
         {!isLoading && error && (
           <p>Something went wrong. Please try again later.</p>
         )}
-        {!isLoading && !error && artists && (
-          <pre>{JSON.stringify(artists, null, 2)}</pre>
+        {!isLoading && !error && artist && (
+          <pre>{JSON.stringify(artist, null, 2)}</pre>
         )}
+
+        {events && <pre>{JSON.stringify(events, null, 2)}</pre>}
       </main>
     </>
   );
