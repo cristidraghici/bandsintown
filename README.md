@@ -2,6 +2,16 @@
 
 > A fun app backed by crowded &#128572;
 
+## How to run
+
+To view the app locally:
+
+- `cp .env.example .env` and edit the file to add the proper values
+- `npm ci`
+- `npm run dev`
+
+Should you need the proxy, check the readme inside the `./proxy` folder of this project.
+
 ## The plan
 
 We will create an app based on React + Typescript + Vite + SASS. It will not have a server component and it will use [pico](https://picocss.com/) for easy styling. We will aim for an atomic structure for the components, but we will start as simple as possible, which means we will only break components into smaller ones only as their complexity grows. Since the file structure will be quite unstable at the beginning, we will keep the CSS in one place and write the tests for the application only slightly later. Pico should help quite a lot with styling, so we might leave the CSS in one place if it turns out we don't need too much custom code.
@@ -16,7 +26,15 @@ A high level plan for the app is the following:
 4. Add proper functionality and start implementing tests;
 5. Overall cleanup and maybe extra features for the repo (e.g. git hooks).
 
-To view the app locally:
+## The first request (/artists)
 
-- `npm ci`
-- `npm run dev`
+We will store the api app id in a .env file. But since we consume a public API with only one version, we will store the address as a constant. Having such values in a constants file keeps the code cleaner.
+
+The first hurdle encountered was that the API has a restrictive CORs policy. To circumvent it we could have used SSR, but since we already started on the path of using vite and react, another solution is to create a proxy. The implementation of the proxy is with Docker and SlimPHP. This is not the most efficient solution, so if there is time we will try to replace the latter with something better.
+
+One important aspect to mention is that we will debounce the search for artists, to make sure we don't make useless requests to the API.
+
+Some thing to note about the /artists route:
+
+- we do not have access to the list of artists, so we are forced to display one at the time;
+- when there are no results, sometimes the API returns an empty string and sometimes it returns `{error: 'Not found'}` (though the latter is harder to reproduce).
