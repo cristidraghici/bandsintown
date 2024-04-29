@@ -1,9 +1,9 @@
 import getUrl from "./getUrl";
 
-const fetcher = async <T>(
-  url: string,
-  options: RequestInit = {}
-): Promise<T> => {
+const fetcher = async <T>([url, options = {}]: [
+  string,
+  RequestInit?
+]): Promise<T> => {
   const res = await fetch(getUrl(url), {
     ...options,
     headers: {

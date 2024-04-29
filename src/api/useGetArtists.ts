@@ -1,20 +1,17 @@
 import useSWR from "swr";
-import fetcher from "./utils/fetcher";
 
-const useGetArtists = (artistName: string) => {
-  const { data, isLoading, error } = useSWR(
+const useGetArtists = (artistName?: string) => {
+  const { data, isLoading, error } = useSWR([
     artistName ? `/artists/${artistName}` : undefined,
-    fetcher
-  );
+  ]);
 
-  if (artistName.length === 0 || data === "") {
+  if (artistName?.length === 0 || data === "") {
     return {
       artist: {},
       isLoading: false,
       error: undefined,
     };
   }
-
   return {
     artist: data,
     isLoading: isLoading || (!error && !data),

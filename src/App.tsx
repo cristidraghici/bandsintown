@@ -10,11 +10,11 @@ const App: React.FunctionComponent = () => {
   const searchRef = useRef<HTMLInputElement>(null);
   const [artistName, setArtistName] = useState<string>("");
   const { artist, isLoading, error } = useGetArtists(artistName);
-  const { events } = useGetArtistsEvents(artistName);
+  const { events } = useGetArtistsEvents(artist ? artistName : undefined);
 
   const handleSearch = debounce(() => {
     setArtistName(searchRef.current?.value || "");
-  }, 100);
+  }, 1000);
 
   return (
     <>
