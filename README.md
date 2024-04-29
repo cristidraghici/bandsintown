@@ -42,3 +42,7 @@ Some thing to note about the /artists route:
 ### Implement the second request (/artists/<artistName>/events)
 
 Using the model on the first request, we will next implement a request for getting the events.
+
+### Implement zod
+
+We will use Zod to implement a minimal validation for the responses from the API

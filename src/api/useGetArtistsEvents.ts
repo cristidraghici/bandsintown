@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import { eventSchema } from "@/schemas";
 
 const useGetArtistsEvents = (artistName?: string) => {
   const { data, isLoading, error } = useSWR([
@@ -13,8 +14,17 @@ const useGetArtistsEvents = (artistName?: string) => {
     };
   }
 
+  const validatedData = eventSchema.safeParse(data);
+  if (!validatedData.success) {
+    return {
+      events: [],
+      isLoading: false,
+      error: validatedData.error.errors,
+    };
+  }
+
   return {
-    events: data,
+    events: validatedData.data,
     isLoading: isLoading || (!error && !data),
     error,
   };
