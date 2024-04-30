@@ -56,3 +56,5 @@ We will use Zod to implement a minimal validation for the responses from the API
 The first thing we will do is to make a small cleanup in the `<App />` component and separate some of the logic into smaller components. We will start with `<Header />` and `<Search />` which will share the artist name though a new global context.
 
 Then we will create the three columns in the example layout, with static empty text placeholders. Once this is done, we will focus on the artist column.
+
+The next step will be implementing the selected event functionality. We will add the functionality in the context and as an extra thing, we will update the way we display the date using `date-fns`, which is more efficient than `moment`.

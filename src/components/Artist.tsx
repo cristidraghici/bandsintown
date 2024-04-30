@@ -3,11 +3,15 @@ import useGlobalContext from "@/hooks/useGlobalContext";
 import useGetArtists from "@/api/useGetArtists";
 import useGetArtistsEvents from "@/api/useGetArtistsEvents";
 
+import formatEventDate from "@/utils/formatEventDate";
+
 import FacebookSVG from "@/assets/facebook.svg?react";
 import WebLinkSVG from "@/assets/weblink.svg?react";
 
+import type { Event } from "@/types";
+
 const Artist = () => {
-  const { artistName } = useGlobalContext();
+  const { artistName, setSelectedEvent } = useGlobalContext();
   const {
     artist,
     isLoading: isLoadingArtist,
@@ -31,6 +35,10 @@ const Artist = () => {
   if (!artistName || !artist) {
     return <div></div>;
   }
+
+  const handleSelectEvent = (event: Event) => {
+    setSelectedEvent(event);
+  };
 
   return (
     <>
@@ -64,11 +72,22 @@ const Artist = () => {
 
       {events.length > 0 &&
         events.map((event) => (
-          <article key={event.id} className="ArtistEvent">
-            <p>{event.datetime}</p>
+          <article
+            key={event.id}
+            className="ArtistEvent"
+            onClick={(e) => {
+              e.preventDefault();
+              handleSelectEvent(event);
+            }}
+          >
+            <p>{formatEventDate(event.datetime)}</p>
             <p>{event.description}</p>
             <p>
-              <a href={event.url} target="_blank">
+              <a
+                href={event.url}
+                target="_blank"
+                onClick={(e) => e.stopPropagation()}
+              >
                 More info
               </a>
             </p>
