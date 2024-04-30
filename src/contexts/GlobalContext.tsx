@@ -1,6 +1,6 @@
 import { PropsWithChildren, createContext, useState } from "react";
 
-import type { Event } from "@/types";
+import type { Event, Artist, FavoriteEvent } from "@/types";
 
 export type GlobalContextType = {
   artistName: string;
@@ -8,6 +8,17 @@ export type GlobalContextType = {
 
   selectedEvent: Event | null;
   setSelectedEvent: (event: Event | null) => void;
+
+  selectedArtist: Artist | null;
+  setSelectedArtist: (artist: Artist | null) => void;
+
+  handleSelectArtistAndEvent: (
+    event: Event | null,
+    artist: Artist | null
+  ) => void;
+
+  favoriteEvents: FavoriteEvent[];
+  setFavoriteEvents: (favoriteEvents: FavoriteEvent[]) => void;
 };
 
 const initialValue: GlobalContextType = {
@@ -16,6 +27,14 @@ const initialValue: GlobalContextType = {
 
   selectedEvent: null,
   setSelectedEvent: () => {},
+
+  selectedArtist: null,
+  setSelectedArtist: () => {},
+
+  handleSelectArtistAndEvent: () => {},
+
+  favoriteEvents: [],
+  setFavoriteEvents: () => {},
 };
 
 export const GlobalContext = createContext<GlobalContextType>({
@@ -27,22 +46,37 @@ export const GlobalProvider: React.FunctionComponent<PropsWithChildren> = ({
 }) => {
   const [artistName, setArtistName] = useState<string>("");
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [selectedArtist, setSelectedArtist] = useState<Artist | null>(null);
+  const [favoriteEvents, setFavoriteEvents] = useState<FavoriteEvent[]>([]);
 
   // Custom function to set the selected event
-  const handleSelectEvent = (event: Event | null) => {
-    if (event?.id === selectedEvent?.id) {
+  const handleSelectArtistAndEvent = (
+    event: Event | null,
+    artist: Artist | null
+  ) => {
+    if (event?.id === selectedEvent?.id || !artist) {
       setSelectedEvent(null);
+      setSelectedArtist(null);
+
       return;
     }
 
     setSelectedEvent(event);
+    setSelectedArtist(artist);
   };
 
   const value = {
     artistName,
     setArtistName,
     selectedEvent,
-    setSelectedEvent: handleSelectEvent,
+    setSelectedEvent,
+    selectedArtist,
+    setSelectedArtist,
+
+    handleSelectArtistAndEvent,
+
+    favoriteEvents,
+    setFavoriteEvents,
   };
 
   return (

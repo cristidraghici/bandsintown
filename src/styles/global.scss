@@ -107,3 +107,14 @@
 .ArtistEvent {
   cursor: pointer;
 }
+
+.FavoriteEventButton {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.FavoriteEvent {
+  &__Action {
+    text-align: center;
+  }
+}

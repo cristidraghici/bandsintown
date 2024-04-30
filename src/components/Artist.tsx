@@ -8,10 +8,10 @@ import formatEventDate from "@/utils/formatEventDate";
 import FacebookSVG from "@/assets/facebook.svg?react";
 import WebLinkSVG from "@/assets/weblink.svg?react";
 
-import type { Event } from "@/types";
+import type { Artist } from "@/types";
 
 const Artist = () => {
-  const { artistName, setSelectedEvent } = useGlobalContext();
+  const { artistName, handleSelectArtistAndEvent } = useGlobalContext();
   const {
     artist,
     isLoading: isLoadingArtist,
@@ -35,10 +35,6 @@ const Artist = () => {
   if (!artistName || !artist) {
     return <div></div>;
   }
-
-  const handleSelectEvent = (event: Event) => {
-    setSelectedEvent(event);
-  };
 
   return (
     <>
@@ -77,7 +73,7 @@ const Artist = () => {
             className="ArtistEvent"
             onClick={(e) => {
               e.preventDefault();
-              handleSelectEvent(event);
+              handleSelectArtistAndEvent(event, artist);
             }}
           >
             <p>{formatEventDate(event.datetime)}</p>

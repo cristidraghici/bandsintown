@@ -27,8 +27,10 @@ export const offerSchema = z.object({
   status: z.string(),
 });
 
+export const eventIdSchema = z.string();
+
 export const eventSchema = z.object({
-  id: z.string(),
+  id: eventIdSchema,
   artist_id: z.string(),
   url: z.string(),
   on_sale_datetime: z.string(),
@@ -37,4 +39,10 @@ export const eventSchema = z.object({
   venue: venueSchema,
   offers: z.array(offerSchema),
   lineup: z.array(z.string()),
+});
+
+export const favoriteEventSchema = z.object({
+  id: eventIdSchema,
+  artist: artistSchema,
+  event: eventSchema,
 });
