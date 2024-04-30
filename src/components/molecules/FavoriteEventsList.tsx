@@ -2,6 +2,8 @@ import useFavoriteEvents from "@/hooks/useFavoriteEvents";
 import useGlobalContext from "@/hooks/useGlobalContext";
 import FavoriteEventDetails from "@/components/atoms/FavoriteEventDetails";
 
+import scrollToTop from "@/utils/scrollToTop";
+
 const FavoriteEventsList = () => {
   const { favoriteEvents, toggleFavoriteEvent } = useFavoriteEvents();
   const { setArtistName, handleSelectArtistAndEvent } = useGlobalContext();
@@ -19,6 +21,7 @@ const FavoriteEventsList = () => {
           onClick={(e) => {
             e.preventDefault();
             setArtistName("");
+            scrollToTop();
             handleSelectArtistAndEvent(
               favoriteEvent.artist,
               favoriteEvent.event

@@ -4,6 +4,8 @@ import EventDetails from "@/components/atoms/EventDetails";
 import useGlobalContext from "@/hooks/useGlobalContext";
 import useGetArtistsEvents from "@/api/useGetArtistsEvents";
 
+import scrollToTop from "@/utils/scrollToTop";
+
 import type { Artist } from "@/types";
 
 interface ArtistEventProps extends ComponentProps<"section"> {
@@ -47,6 +49,7 @@ const ArtistEvents: React.FunctionComponent<ArtistEventProps> = ({
             onClick={(e) => {
               e.preventDefault();
               handleSelectArtistAndEvent(artist, event);
+              scrollToTop();
             }}
           />
         ))}
