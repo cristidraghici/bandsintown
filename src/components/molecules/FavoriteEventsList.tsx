@@ -6,7 +6,8 @@ import scrollToTop from "@/utils/scrollToTop";
 
 const FavoriteEventsList = () => {
   const { favoriteEvents, toggleFavoriteEvent } = useFavoriteEvents();
-  const { setArtistName, handleSelectArtistAndEvent } = useGlobalContext();
+  const { setArtistName, handleSelectArtistAndEvent, selectedEvent } =
+    useGlobalContext();
 
   if (favoriteEvents.length === 0) {
     return <div>No favorite events</div>;
@@ -17,6 +18,11 @@ const FavoriteEventsList = () => {
       {favoriteEvents.map((favoriteEvent) => (
         <FavoriteEventDetails
           key={favoriteEvent.id}
+          className={
+            selectedEvent?.id === favoriteEvent.event.id
+              ? "FavoriteEventDetails--selected"
+              : ""
+          }
           favoriteEvent={favoriteEvent}
           onClick={(e) => {
             e.preventDefault();

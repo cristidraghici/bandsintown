@@ -129,6 +129,11 @@
 }
 
 .FavoriteEventDetails {
+  &--selected {
+    background-color: var(--pico-switch-background-color);
+    border: 1px solid var(--pico-border-color);
+  }
+
   ul {
     padding: 0 0 0 1rem;
   }
