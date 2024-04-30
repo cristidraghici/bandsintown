@@ -1,4 +1,5 @@
 import { ComponentProps } from "react";
+import ImagePreview from "@/components/atoms/ImagePreview";
 
 import type { Artist } from "@/types";
 
@@ -21,7 +22,7 @@ const ArtistDetails: React.FunctionComponent<ArtistDetailsProps> = ({
         target="_blank"
         className="ArtistDetails__Media"
       >
-        <img src={artist.thumb_url} alt={artist.name} />
+        <ImagePreview thumbUrl={artist.thumb_url} imageUrl={artist.image_url} />
       </a>
 
       <section className="ArtistDetails__Info">
