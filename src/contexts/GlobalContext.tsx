@@ -18,8 +18,8 @@ export type GlobalContextType = {
   setSelectedArtist: (artist: Artist | null) => void;
 
   handleSelectArtistAndEvent: (
-    event: Event | null,
-    artist: Artist | null
+    artist: Artist | null,
+    event: Event | null
   ) => void;
 
   favoriteEvents: FavoriteEvent[];
@@ -58,8 +58,8 @@ export const GlobalProvider: React.FunctionComponent<PropsWithChildren> = ({
 
   // Custom function to set the selected event
   const handleSelectArtistAndEvent = (
-    event: Event | null,
-    artist: Artist | null
+    artist: Artist | null,
+    event: Event | null
   ) => {
     if (event?.id === selectedEvent?.id || !artist) {
       setSelectedEvent(null);

@@ -1,8 +1,10 @@
 import useFavoriteEvents from "@/hooks/useFavoriteEvents";
+import useGlobalContext from "@/hooks/useGlobalContext";
 import FavoriteEventDetails from "@/components/atoms/FavoriteEventDetails";
 
 const FavoriteEventsList = () => {
   const { favoriteEvents, toggleFavoriteEvent } = useFavoriteEvents();
+  const { setArtistName, handleSelectArtistAndEvent } = useGlobalContext();
 
   if (favoriteEvents.length === 0) {
     return <div>No favorite events</div>;
@@ -10,13 +12,22 @@ const FavoriteEventsList = () => {
 
   return (
     <div>
-      {favoriteEvents.map((event) => (
+      {favoriteEvents.map((favoriteEvent) => (
         <FavoriteEventDetails
-          key={event.id}
-          favoriteEvent={event}
+          key={favoriteEvent.id}
+          favoriteEvent={favoriteEvent}
           onClick={(e) => {
             e.preventDefault();
-            toggleFavoriteEvent(event.id, null, null);
+            setArtistName("");
+            handleSelectArtistAndEvent(
+              favoriteEvent.artist,
+              favoriteEvent.event
+            );
+          }}
+          onRemoveClicked={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleFavoriteEvent(favoriteEvent.id, null, null);
           }}
         />
       ))}

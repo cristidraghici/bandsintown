@@ -9,7 +9,8 @@ import useGetArtistsEvents from "@/api/useGetArtistsEvents";
 import type { Artist } from "@/types";
 
 const Artist = () => {
-  const { artistName, handleSelectArtistAndEvent } = useGlobalContext();
+  const { artistName, selectedArtist, handleSelectArtistAndEvent } =
+    useGlobalContext();
 
   const {
     artist,
@@ -31,6 +32,10 @@ const Artist = () => {
     return <div>Error fetching the artist...</div>;
   }
 
+  if (selectedArtist) {
+    return <ArtistDetails artist={selectedArtist} />;
+  }
+
   if (!artistName || !artist) {
     return <div></div>;
   }
@@ -48,7 +53,7 @@ const Artist = () => {
             isOffersVisible={false}
             onClick={(e) => {
               e.preventDefault();
-              handleSelectArtistAndEvent(event, artist);
+              handleSelectArtistAndEvent(artist, event);
             }}
           />
         ))}
