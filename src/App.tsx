@@ -1,48 +1,27 @@
-import { useRef, useState } from "react";
-
-import debounce from "@/utils/debounce";
-import useGetArtists from "@/api/useGetArtists";
-import useGetArtistsEvents from "@/api/useGetArtistsEvents";
-
-import LogoSVG from "@/assets/logo.svg?react";
+import Header from "@/components/Header";
+import Search from "@/components/Search";
+import Artist from "@/components/Artist";
 
 const App: React.FunctionComponent = () => {
-  const searchRef = useRef<HTMLInputElement>(null);
-  const [artistName, setArtistName] = useState<string>("");
-  const { artist, isLoading, error } = useGetArtists(artistName);
-  const { events } = useGetArtistsEvents(artist ? artistName : undefined);
-
-  const handleSearch = debounce(() => {
-    setArtistName(searchRef.current?.value || "");
-  }, 1000);
-
   return (
     <>
-      <header className="container">
-        <LogoSVG width="20" />
-        <h1>Who's in town</h1>
-      </header>
+      <Header />
 
-      <main className="container">
-        <p>Find out who's in town and where they are playing.</p>
+      <main className="Main container">
+        <section className="Main__Artist">
+          <Search />
+          <Artist />
+        </section>
 
-        <input
-          className="Search"
-          type="search"
-          placeholder="Search for an artist"
-          ref={searchRef}
-          onChange={handleSearch}
-        />
+        <section className="Main__Event">
+          <h3>Selected event information</h3>
+          <p>No selected event</p>
+        </section>
 
-        {isLoading && <p>Loading...</p>}
-        {!isLoading && error && (
-          <p>Something went wrong. Please try again later.</p>
-        )}
-        {!isLoading && !error && artist && (
-          <pre>{JSON.stringify(artist, null, 2)}</pre>
-        )}
-
-        {events && <pre>{JSON.stringify(events, null, 2)}</pre>}
+        <section className="Main__Favorites">
+          <h3>Favorites</h3>
+          <p>No favorites yet</p>
+        </section>
       </main>
     </>
   );

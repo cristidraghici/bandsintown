@@ -34,7 +34,7 @@ export const eventSchema = z.object({
   on_sale_datetime: z.string(),
   datetime: z.string(),
   description: z.string(),
-  venue: z.array(venueSchema),
+  venue: venueSchema,
   offers: z.array(offerSchema),
   lineup: z.array(z.string()),
 });

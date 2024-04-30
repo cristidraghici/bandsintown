@@ -50,3 +50,9 @@ Notes about the route:
 ### Implement zod
 
 We will use Zod to implement a minimal validation for the responses from the API
+
+## Create the interfaces
+
+The first thing we will do is to make a small cleanup in the `<App />` component and separate some of the logic into smaller components. We will start with `<Header />` and `<Search />` which will share the artist name though a new global context.
+
+Then we will create the three columns in the example layout, with static empty text placeholders. Once this is done, we will focus on the artist column.
