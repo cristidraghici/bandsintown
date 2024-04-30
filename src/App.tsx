@@ -1,11 +1,10 @@
-import Header from "@/components/Header";
-import Search from "@/components/Search";
+import Header from "@/components/atoms/Header";
 
-import Artist from "@/components/Artist";
-import SelectedEvent from "@/components/SelectedEvent";
+import Search from "@/components/molecules/Search";
+import Artist from "@/components/molecules/Artist";
+import SelectedEvent from "@/components/molecules/SelectedEvent";
 
-import FavoriteEventButton from "@/components/FavoriteEventButton";
-import FavoriteEventsList from "./components/FavoriteEventsList";
+import FavoriteEventsList from "./components/molecules/FavoriteEventsList";
 
 const App: React.FunctionComponent = () => {
   return (
@@ -20,7 +19,6 @@ const App: React.FunctionComponent = () => {
 
         <section className="Main__Event">
           <h3>Selected event information</h3>
-          <FavoriteEventButton />
           <SelectedEvent />
         </section>
 
