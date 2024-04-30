@@ -37,11 +37,15 @@ One important aspect to mention is that we will debounce the search for artists,
 Some thing to note about the /artists route:
 
 - we do not have access to the list of artists, so we are forced to display one at the time;
-- when there are no results, sometimes the API returns an empty string and sometimes it returns `{error: 'Not found'}` (though the latter is harder to reproduce).
+- when there are no results, sometimes the API returns an empty string.
 
 ### Implement the second request (/artists/<artistName>/events)
 
 Using the model on the first request, we will next implement a request for getting the events.
+
+Notes about the route:
+
+- when there are no results, the api returns: `{"errorMessage": "[NotFound] The artist was not found"}`
 
 ### Implement zod
 
