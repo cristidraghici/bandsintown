@@ -1,31 +1,41 @@
 import useSWR from "swr";
 import { eventSchema } from "@/schemas";
 
+import type { Event } from "@/types";
+
 const useGetArtistsEvents = (artistName?: string) => {
-  const { data, isLoading, error } = useSWR([
-    artistName ? `/artists/${artistName}/events` : undefined,
-  ]);
+  const { data, isLoading, error } = useSWR(
+    artistName ? [`/artists/${artistName}/events`] : undefined
+  );
+
+  if (isLoading) {
+    return {
+      events: [] as Event[],
+      isLoading: true,
+      error: undefined,
+    };
+  }
 
   if (artistName?.length === 0 || data === "") {
     return {
-      events: [],
+      events: [] as Event[],
       isLoading: false,
       error: undefined,
     };
   }
 
-  const validatedData = eventSchema.safeParse(data);
+  const validatedData = eventSchema.array().safeParse(data);
   if (!validatedData.success) {
     return {
-      events: [],
+      events: [] as Event[],
       isLoading: false,
-      error: validatedData.error.errors,
+      error: "Error while validating the events data...",
     };
   }
 
   return {
     events: validatedData.data,
-    isLoading: isLoading || (!error && !data),
+    isLoading: false,
     error,
   };
 };

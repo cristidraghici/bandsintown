@@ -2,13 +2,21 @@ import useSWR from "swr";
 import { artistSchema } from "@/schemas";
 
 const useGetArtists = (artistName?: string) => {
-  const { data, isLoading, error } = useSWR([
-    artistName ? `/artists/${artistName}` : undefined,
-  ]);
+  const { data, isLoading, error } = useSWR(
+    artistName ? [`/artists/${artistName}`] : undefined
+  );
+
+  if (isLoading) {
+    return {
+      artist: undefined,
+      isLoading: true,
+      error: undefined,
+    };
+  }
 
   if (artistName?.length === 0 || data === "") {
     return {
-      artist: {},
+      artist: undefined,
       isLoading: false,
       error: undefined,
     };
@@ -18,15 +26,15 @@ const useGetArtists = (artistName?: string) => {
 
   if (!validatedData.success) {
     return {
-      artist: {},
+      artist: undefined,
       isLoading: false,
-      error: validatedData.error.errors,
+      error: "Error while validating the artist data...",
     };
   }
 
   return {
     artist: validatedData.data,
-    isLoading: isLoading || (!error && !data),
+    isLoading: false,
     error,
   };
 };

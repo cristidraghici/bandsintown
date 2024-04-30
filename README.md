@@ -37,7 +37,7 @@ One important aspect to mention is that we will debounce the search for artists,
 Some thing to note about the /artists route:
 
 - we do not have access to the list of artists, so we are forced to display one at the time;
-- when there are no results, sometimes the API returns an empty string.
+- when there are no results, sometimes the API returns an empty string and other times it return `{"error": "Not Found"}`.
 
 ### Implement the second request (/artists/<artistName>/events)
 

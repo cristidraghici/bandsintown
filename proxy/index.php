@@ -10,7 +10,7 @@ require __DIR__ . '/vendor/autoload.php';
 
 // Configuration
 $config = [
-    'destination_url' => 'https://rest.bandsintown.com/',
+    'destination_url' => 'https://rest.bandsintown.com/', // The url must end with a trailing slash
 ];
 
 // App
