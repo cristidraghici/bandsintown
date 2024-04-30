@@ -17,13 +17,13 @@ const SelectedEvent: React.FunctionComponent = () => {
 
   return (
     <>
+      <EventDetails event={selectedEvent} />
+
       <button className="SelectedEventButton" onClick={handleClick}>
         {isFavorite(selectedEvent.id)
           ? "Remove from favorites"
           : "Add to favorites"}
       </button>
-
-      <EventDetails event={selectedEvent} />
     </>
   );
 };

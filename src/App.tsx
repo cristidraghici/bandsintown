@@ -9,7 +9,7 @@ import FavoriteEventsList from "./components/molecules/FavoriteEventsList";
 const App: React.FunctionComponent = () => {
   return (
     <>
-      <Header />
+      <Header className="container" />
 
       <main className="Main container">
         <section className="Main__Artist">

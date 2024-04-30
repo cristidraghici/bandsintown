@@ -1,8 +1,12 @@
+import { ComponentProps } from "react";
 import LogoSVG from "@/assets/logo.svg?react";
 
-const Header: React.FunctionComponent = () => {
+const Header: React.FunctionComponent<ComponentProps<"header">> = ({
+  className,
+  ...rest
+}) => {
   return (
-    <header className="Header container">
+    <header className={`Header ${className}`} {...rest}>
       <section className="Logo">
         <h1 className="Logo__text">Who's in town</h1>
         <LogoSVG className="Logo__img" />
