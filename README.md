@@ -64,3 +64,16 @@ We will next implement the favorites list. For the sake of simplicity and for sa
 ## Add more functionality
 
 The first thing we will do is persist the favorites into localStorage. Since localStorage is [pretty generous](https://web.dev/articles/storage-for-the-web#:%7E:text=LocalStorage%20should%20be%20avoided%20because,web%20workers%20or%20service%20workers) with the space, we will store the information about the favorite event there. However, we will add a minimal safety net with cleaning the loaded content of events which already happened.
+
+## Final thoughts
+
+- I have started the implementation with the implicit assumption that CORS will not be a problem. Had I known in the beginning, I would have probably picked Next.js for the job, since it should solve the CORS issue out of the box with SSR. To continue with the current implementation, I have implemented a proxy in SlimPHP, which should be fairly easy to access. It's not the best language/solution for creating a CORS proxy, but it's only supposed to work and advance us in the frontend challenge. See the readme in `./proxy` for more info. An example `.env` file for the app with the proxy is:
+  ```
+  VITE_API_URL="http://localhost:8080/proxy"
+  VITE_API_APP_ID=123
+  ```
+- I made another wrong assumption about the cache in SWR. The out of the box caching does not store the results in memory. However, debouncing the search should be fine for not overloading the API;
+- Due to lack of time, I will submit the code without tests. However, the plan is to implement end to end tests, after which some refactoring to cleanup and maybe simplify the components is in order, after which unit tests would be added;
+- As far as the favorites go, the current implementation fits the requirements. However, a more efficient approach would have been to save only the representative data for artists and events and load the extra data on click.
+
+All in all, it's been a nice challenge! :)
