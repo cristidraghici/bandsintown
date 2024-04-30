@@ -1,6 +1,6 @@
 import { ComponentProps } from "react";
 import formatEventDate from "@/utils/formatEventDate";
-
+import getVenueLocation from "@/utils/getVenueLocation";
 import type { FavoriteEvent } from "@/types";
 
 interface FavoriteEventDetailsProps extends ComponentProps<"article"> {
@@ -17,15 +17,7 @@ const FavoriteEventDetails: React.FunctionComponent<
       <p>{favoriteEvent.event.venue.name}</p>
       <ul>
         <li>{formatEventDate(favoriteEvent.event.datetime)}</li>
-        <li>
-          {[
-            favoriteEvent.event.venue.city,
-            favoriteEvent.event.venue.region,
-            favoriteEvent.event.venue.country,
-          ]
-            .filter((item) => !!item)
-            .join(", ")}
-        </li>
+        <li>{getVenueLocation(favoriteEvent.event.venue)}</li>
       </ul>
 
       <div className="FavoriteEventDetails__Action">

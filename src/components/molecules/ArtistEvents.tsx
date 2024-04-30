@@ -14,7 +14,7 @@ const ArtistEvents: React.FunctionComponent<ArtistEventProps> = ({
   artist,
   ...rest
 }) => {
-  const { handleSelectArtistAndEvent } = useGlobalContext();
+  const { handleSelectArtistAndEvent, selectedEvent } = useGlobalContext();
 
   const {
     events,
@@ -36,7 +36,12 @@ const ArtistEvents: React.FunctionComponent<ArtistEventProps> = ({
         events.map((event) => (
           <EventDetails
             key={event.id}
+            className={
+              selectedEvent?.id === event.id ? "EventDetails--selected" : ""
+            }
             event={event}
+            isSmallTitleVisible={true}
+            isDateVisible={false}
             isVenueVisible={false}
             isOffersVisible={false}
             onClick={(e) => {

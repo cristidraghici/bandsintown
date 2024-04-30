@@ -1,6 +1,7 @@
 import { ComponentProps } from "react";
 import ReadMore from "./ReadMore";
 import formatEventDate from "@/utils/formatEventDate";
+import getVenueLocation from "@/utils/getVenueLocation";
 
 import type { Event } from "@/types";
 
@@ -9,6 +10,8 @@ const DESCRIPTION_MAX_LENGTH = 200;
 interface ArtistEventProps extends ComponentProps<"article"> {
   event: Event;
 
+  isSmallTitleVisible?: boolean;
+  isDateVisible?: boolean;
   isDescriptionVisible?: boolean;
   isVenueVisible?: boolean;
   isOffersVisible?: boolean;
@@ -17,6 +20,8 @@ interface ArtistEventProps extends ComponentProps<"article"> {
 const EventDetails: React.FunctionComponent<ArtistEventProps> = ({
   event,
   className,
+  isSmallTitleVisible = false,
+  isDateVisible = true,
   isDescriptionVisible = true,
   isVenueVisible = true,
   isOffersVisible = true,
@@ -25,8 +30,14 @@ const EventDetails: React.FunctionComponent<ArtistEventProps> = ({
   return (
     <article className={`EventDetails ${className}`} {...rest}>
       <section className="EventDetails__Event">
-        <p>{formatEventDate(event.datetime)}</p>
-        {isDescriptionVisible && (
+        {isSmallTitleVisible && (
+          <p>
+            {formatEventDate(event.datetime, "MMMMMM dd, yyyy")} at{" "}
+            {event.venue.name}
+          </p>
+        )}
+        {isDateVisible && <p>{formatEventDate(event.datetime)}</p>}
+        {isDescriptionVisible && !!event.description && (
           <ReadMore maxLength={DESCRIPTION_MAX_LENGTH}>
             {event.description}
           </ReadMore>
@@ -37,13 +48,11 @@ const EventDetails: React.FunctionComponent<ArtistEventProps> = ({
         <section className="EventDetails__Venue">
           <h4>Venue</h4>
           <p>{event.venue.name}</p>
-          <p>{event.venue.city}</p>
-          <p>{event.venue.region}</p>
-          <p>{event.venue.country}</p>
+          <p>{getVenueLocation(event.venue)}</p>
         </section>
       )}
 
-      {isOffersVisible && (
+      {isOffersVisible && event.offers.length > 0 && (
         <section className="EventDetails__Offers">
           <h4>Offers</h4>
           {event.offers.map((offer) => (
