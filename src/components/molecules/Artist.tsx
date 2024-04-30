@@ -32,11 +32,11 @@ const Artist = () => {
     return <div>Error fetching the artist...</div>;
   }
 
-  if (selectedArtist) {
-    return <ArtistDetails artist={selectedArtist} />;
-  }
-
   if (!artistName || !artist) {
+    if (selectedArtist) {
+      return <ArtistDetails artist={selectedArtist} />;
+    }
+
     return <div></div>;
   }
 
