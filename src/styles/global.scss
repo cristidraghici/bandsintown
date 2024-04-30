@@ -58,6 +58,12 @@
     }
   }
 
+  &__Artist {
+    .EventDetails {
+      cursor: pointer;
+    }
+  }
+
   @media (min-width: 800px) {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -104,16 +110,12 @@
   }
 }
 
-.ArtistEvent {
-  cursor: pointer;
-}
-
-.FavoriteEventButton {
+.SelectedEventButton {
   width: 100%;
   margin-bottom: 1rem;
 }
 
-.FavoriteEvent {
+.FavoriteEventDetails {
   &__Action {
     text-align: center;
   }

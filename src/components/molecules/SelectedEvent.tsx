@@ -17,7 +17,7 @@ const SelectedEvent: React.FunctionComponent = () => {
 
   return (
     <>
-      <button className="FavoriteEventButton" onClick={handleClick}>
+      <button className="SelectedEventButton" onClick={handleClick}>
         {isFavorite(selectedEvent.id)
           ? "Remove from favorites"
           : "Add to favorites"}

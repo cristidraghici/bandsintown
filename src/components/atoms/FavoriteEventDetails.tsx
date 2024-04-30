@@ -11,7 +11,7 @@ const FavoriteEventDetails: React.FunctionComponent<
   FavoriteEventDetailsProps
 > = ({ favoriteEvent, className, onClick, ...rest }) => {
   return (
-    <article className={`FavoriteEvent ${className}`} {...rest}>
+    <article className={`FavoriteEventDetails ${className}`} {...rest}>
       <h3>{favoriteEvent.artist.name}</h3>
       <p>{favoriteEvent.event.venue.name}</p>
       <ul>
@@ -27,7 +27,7 @@ const FavoriteEventDetails: React.FunctionComponent<
         </li>
       </ul>
 
-      <div className="FavoriteEvent__Action">
+      <div className="FavoriteEventDetails__Action">
         <button className="secondary" onClick={onClick}>
           Remove from favorites
         </button>
