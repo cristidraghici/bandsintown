@@ -18,10 +18,9 @@ const useFavoriteEvents = () => {
       return;
     }
 
-    setFavoriteEvents([
-      ...favoriteEvents,
-      { id: eventId, artist, event } as FavoriteEvent,
-    ]);
+    const newFavoriteEvent: FavoriteEvent = { id: eventId, artist, event };
+
+    setFavoriteEvents([...favoriteEvents, newFavoriteEvent]);
   };
 
   return { favoriteEvents, isFavorite, toggleFavoriteEvent };

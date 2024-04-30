@@ -60,3 +60,7 @@ Then we will create the three columns in the example layout, with static empty t
 The next step will be implementing the selected event functionality. We will add the functionality in the context and as an extra thing, we will update the way we display the date using `date-fns`, which is more efficient than `moment`.
 
 We will next implement the favorites list. For the sake of simplicity and for saving time, we will not go on the path of saving the minimal information and loading it from the api.
+
+## Add more functionality
+
+The first thing we will do is persist the favorites into localStorage. Since localStorage is [pretty generous](https://web.dev/articles/storage-for-the-web#:%7E:text=LocalStorage%20should%20be%20avoided%20because,web%20workers%20or%20service%20workers) with the space, we will store the information about the favorite event there. However, we will add a minimal safety net with cleaning the loaded content of events which already happened.

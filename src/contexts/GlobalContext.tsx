@@ -1,5 +1,10 @@
 import { PropsWithChildren, createContext, useState } from "react";
 
+import {
+  loadFavoriteEvents,
+  persistFavoriteEvents,
+} from "@/utils/localStorageUtils";
+
 import type { Event, Artist, FavoriteEvent } from "@/types";
 
 export type GlobalContextType = {
@@ -47,7 +52,9 @@ export const GlobalProvider: React.FunctionComponent<PropsWithChildren> = ({
   const [artistName, setArtistName] = useState<string>("");
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [selectedArtist, setSelectedArtist] = useState<Artist | null>(null);
-  const [favoriteEvents, setFavoriteEvents] = useState<FavoriteEvent[]>([]);
+  const [favoriteEvents, setFavoriteEvents] = useState<FavoriteEvent[]>(
+    loadFavoriteEvents()
+  );
 
   // Custom function to set the selected event
   const handleSelectArtistAndEvent = (
@@ -65,6 +72,12 @@ export const GlobalProvider: React.FunctionComponent<PropsWithChildren> = ({
     setSelectedArtist(artist);
   };
 
+  // Persist favorite events to local storage
+  const handleSetFavoriteEvents = (favoriteEvents: FavoriteEvent[]) => {
+    setFavoriteEvents(favoriteEvents);
+    persistFavoriteEvents(favoriteEvents);
+  };
+
   const value = {
     artistName,
     setArtistName,
@@ -76,7 +89,7 @@ export const GlobalProvider: React.FunctionComponent<PropsWithChildren> = ({
     handleSelectArtistAndEvent,
 
     favoriteEvents,
-    setFavoriteEvents,
+    setFavoriteEvents: handleSetFavoriteEvents,
   };
 
   return (
