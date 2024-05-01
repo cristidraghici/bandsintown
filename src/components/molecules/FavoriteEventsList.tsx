@@ -15,7 +15,7 @@ const FavoriteEventsList = () => {
 
   return (
     <div>
-      {favoriteEvents.map((favoriteEvent) => (
+      {[...favoriteEvents].reverse().map((favoriteEvent) => (
         <FavoriteEventDetails
           key={favoriteEvent.id}
           className={
