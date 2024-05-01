@@ -1,5 +1,5 @@
 import { ComponentProps } from "react";
-import EventDetails from "@/components/atoms/EventDetails";
+import EventSummary from "@/components/atoms/EventSummary";
 
 import useGlobalContext from "@/hooks/useGlobalContext";
 import useGetArtistsEvents from "@/api/useGetArtistsEvents";
@@ -36,17 +36,13 @@ const ArtistEvents: React.FunctionComponent<ArtistEventProps> = ({
     <section {...rest}>
       {events.length > 0 &&
         events.map((event) => (
-          <EventDetails
+          <EventSummary
             key={event.id}
             className={
-              selectedEvent?.id === event.id ? "EventDetails--selected" : ""
+              selectedEvent?.id === event.id ? "EventSummary--selected" : ""
             }
             event={event}
-            isSmallTitleVisible={true}
-            isDateVisible={false}
-            isVenueVisible={false}
-            isOffersVisible={false}
-            isFooterVisible={false}
+            artist={artist}
             onClick={(e) => {
               e.preventDefault();
               handleSelectArtistAndEvent(artist, event);

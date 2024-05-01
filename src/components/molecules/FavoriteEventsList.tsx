@@ -1,6 +1,6 @@
 import useFavoriteEvents from "@/hooks/useFavoriteEvents";
 import useGlobalContext from "@/hooks/useGlobalContext";
-import FavoriteEventDetails from "@/components/atoms/FavoriteEventDetails";
+import EventSummary from "@/components/atoms/EventSummary";
 
 import scrollToTop from "@/utils/scrollToTop";
 
@@ -15,23 +15,20 @@ const FavoriteEventsList = () => {
 
   return (
     <div>
-      {[...favoriteEvents].reverse().map((favoriteEvent) => (
-        <FavoriteEventDetails
-          key={favoriteEvent.id}
+      {[...favoriteEvents].reverse().map(({ id, event, artist }) => (
+        <EventSummary
+          key={id}
           className={
-            selectedEvent?.id === favoriteEvent.event.id
-              ? "FavoriteEventDetails--selected"
-              : ""
+            selectedEvent?.id === event.id ? "EventSummary--selected" : ""
           }
-          favoriteEvent={favoriteEvent}
+          event={event}
+          artist={artist}
+          showArtistNameInTitle={true}
           onClick={(e) => {
             e.preventDefault();
             setArtistName("");
             scrollToTop();
-            handleSelectArtistAndEvent(
-              favoriteEvent.artist,
-              favoriteEvent.event
-            );
+            handleSelectArtistAndEvent(artist, event);
           }}
         />
       ))}

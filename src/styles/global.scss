@@ -69,12 +69,6 @@
     }
   }
 
-  &__Favorites {
-    .FavoriteEventDetails {
-      cursor: pointer;
-    }
-  }
-
   @media (min-width: 800px) {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -148,10 +142,17 @@
   margin-bottom: 1rem;
 }
 
-.FavoriteEventDetails {
+.EventSummary {
+  cursor: pointer;
+
   &--selected {
     background-color: var(--pico-switch-background-color);
     border: 1px solid var(--pico-border-color);
+
+    header {
+      background-color: var(--pico-switch-background-color);
+      border: 1px solid var(--pico-border-color);
+    }
   }
 
   ul {
