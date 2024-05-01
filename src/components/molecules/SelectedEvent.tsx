@@ -15,14 +15,25 @@ const SelectedEvent: React.FunctionComponent = () => {
     toggleFavoriteEvent(selectedEvent.id, selectedEvent, selectedArtist);
   };
 
+  const { text, className } = isFavorite(selectedEvent.id)
+    ? {
+        text: "Remove from favorites",
+        className: "secondary",
+      }
+    : {
+        text: "Add to favorites",
+        className: "primary",
+      };
+
   return (
     <>
       <EventDetails event={selectedEvent} />
 
-      <button className="SelectedEventButton" onClick={handleClick}>
-        {isFavorite(selectedEvent.id)
-          ? "Remove from favorites"
-          : "Add to favorites"}
+      <button
+        className={`SelectedEventButton ${className}`}
+        onClick={handleClick}
+      >
+        {text}
       </button>
     </>
   );

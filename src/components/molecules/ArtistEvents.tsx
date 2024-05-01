@@ -46,6 +46,7 @@ const ArtistEvents: React.FunctionComponent<ArtistEventProps> = ({
             isDateVisible={false}
             isVenueVisible={false}
             isOffersVisible={false}
+            isFooterVisible={false}
             onClick={(e) => {
               e.preventDefault();
               handleSelectArtistAndEvent(artist, event);

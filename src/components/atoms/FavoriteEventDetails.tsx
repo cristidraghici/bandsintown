@@ -5,26 +5,20 @@ import type { FavoriteEvent } from "@/types";
 
 interface FavoriteEventDetailsProps extends ComponentProps<"article"> {
   favoriteEvent: FavoriteEvent;
-  onRemoveClicked: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const FavoriteEventDetails: React.FunctionComponent<
   FavoriteEventDetailsProps
-> = ({ favoriteEvent, className, onRemoveClicked, ...rest }) => {
+> = ({ favoriteEvent, className, ...rest }) => {
   return (
     <article className={`FavoriteEventDetails ${className}`} {...rest}>
-      <h3>{favoriteEvent.artist.name}</h3>
-      <p>{favoriteEvent.event.venue.name}</p>
+      <p>
+        {favoriteEvent.artist.name} at {favoriteEvent.event.venue.name}
+      </p>
       <ul>
         <li>{formatEventDate(favoriteEvent.event.datetime)}</li>
         <li>{getVenueLocation(favoriteEvent.event.venue)}</li>
       </ul>
-
-      <div className="FavoriteEventDetails__Action">
-        <button className="secondary" onClick={onRemoveClicked}>
-          Remove from favorites
-        </button>
-      </div>
     </article>
   );
 };

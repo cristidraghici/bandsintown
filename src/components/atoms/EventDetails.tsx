@@ -15,6 +15,7 @@ interface ArtistEventProps extends ComponentProps<"article"> {
   isDescriptionVisible?: boolean;
   isVenueVisible?: boolean;
   isOffersVisible?: boolean;
+  isFooterVisible?: boolean;
 }
 
 const EventDetails: React.FunctionComponent<ArtistEventProps> = ({
@@ -25,6 +26,7 @@ const EventDetails: React.FunctionComponent<ArtistEventProps> = ({
   isDescriptionVisible = true,
   isVenueVisible = true,
   isOffersVisible = true,
+  isFooterVisible = true,
   ...rest
 }) => {
   return (
@@ -66,15 +68,17 @@ const EventDetails: React.FunctionComponent<ArtistEventProps> = ({
         </section>
       )}
 
-      <p>
-        <a
-          href={event.url}
-          target="_blank"
-          onClick={(e) => e.stopPropagation()}
-        >
-          More info
-        </a>
-      </p>
+      {isFooterVisible && (
+        <footer>
+          <a
+            href={event.url}
+            target="_blank"
+            onClick={(e) => e.stopPropagation()}
+          >
+            More info
+          </a>
+        </footer>
+      )}
     </article>
   );
 };

@@ -17,31 +17,36 @@ const ArtistDetails: React.FunctionComponent<ArtistDetailsProps> = ({
 }) => {
   return (
     <article className={`ArtistDetails ${className}`} {...rest}>
-      <a
-        href={artist.image_url}
-        target="_blank"
-        className="ArtistDetails__Media"
-      >
-        <ImagePreview thumbUrl={artist.thumb_url} imageUrl={artist.image_url} />
-      </a>
+      <div className="ArtistDetails_Content">
+        <a
+          href={artist.image_url}
+          target="_blank"
+          className="ArtistDetails_Content_Media"
+        >
+          <ImagePreview
+            thumbUrl={artist.thumb_url}
+            imageUrl={artist.image_url}
+          />
+        </a>
 
-      <section className="ArtistDetails__Info">
-        <h3>{artist.name}</h3>
+        <section className="ArtistDetails_Content_Info">
+          <h3>{artist.name}</h3>
 
-        <ul>
-          <li>
-            <a href={artist.facebook_page_url} target="_blank">
-              <FacebookSVG width={20} height={20} />
-            </a>
-          </li>
-          <li>
-            <a href={artist.url} target="_blank">
-              <WebLinkSVG width={20} height={20} />
-            </a>
-          </li>
-        </ul>
-        <p>{artist.upcoming_event_count} upcoming events</p>
-      </section>
+          <ul>
+            <li>
+              <a href={artist.facebook_page_url} target="_blank">
+                <FacebookSVG width={20} height={20} />
+              </a>
+            </li>
+            <li>
+              <a href={artist.url} target="_blank">
+                <WebLinkSVG width={20} height={20} />
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
+      <footer>{artist.upcoming_event_count} upcoming events</footer>
     </article>
   );
 };

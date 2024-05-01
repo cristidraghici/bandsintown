@@ -5,7 +5,7 @@ import FavoriteEventDetails from "@/components/atoms/FavoriteEventDetails";
 import scrollToTop from "@/utils/scrollToTop";
 
 const FavoriteEventsList = () => {
-  const { favoriteEvents, toggleFavoriteEvent } = useFavoriteEvents();
+  const { favoriteEvents } = useFavoriteEvents();
   const { setArtistName, handleSelectArtistAndEvent, selectedEvent } =
     useGlobalContext();
 
@@ -32,11 +32,6 @@ const FavoriteEventsList = () => {
               favoriteEvent.artist,
               favoriteEvent.event
             );
-          }}
-          onRemoveClicked={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            toggleFavoriteEvent(favoriteEvent.id, null, null);
           }}
         />
       ))}
