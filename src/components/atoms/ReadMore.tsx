@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, ComponentProps } from "react";
 
-interface ReadMoreProps {
+interface ReadMoreProps extends ComponentProps<"span"> {
   children?: string;
   maxLength: number;
 }
 
-const ReadMore: React.FC<ReadMoreProps> = ({ children, maxLength }) => {
+const ReadMore: React.FC<ReadMoreProps> = ({
+  children,
+  maxLength,
+  ...rest
+}) => {
   const [isTruncated, setIsTruncated] = useState(true);
 
   if (!children) return null;
@@ -25,12 +29,12 @@ const ReadMore: React.FC<ReadMoreProps> = ({ children, maxLength }) => {
   };
 
   return (
-    <>
+    <span {...rest}>
       {resultString}{" "}
       <a className="ReadMore" href="#" onClick={onClick}>
         {isTruncated ? "Read more" : "Show less"}
       </a>
-    </>
+    </span>
   );
 };
 

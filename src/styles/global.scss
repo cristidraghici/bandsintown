@@ -1,7 +1,7 @@
 @import "@picocss/pico";
 
 .Header {
-  padding: 0.4rem 1rem 1rem 1rem;
+  padding: 1rem;
 
   .Logo {
     display: flex;
@@ -132,6 +132,16 @@
     }
   }
 
+  ul {
+    padding: 0 0 0 1rem;
+    margin: 0 0 1rem 0;
+  }
+
+  &_Description {
+    text-align: justify;
+    display: inline-block;
+  }
+
   footer {
     text-align: right;
   }
@@ -160,8 +170,10 @@
     margin: 0;
   }
 
-  &__Action {
-    text-align: center;
+  &_Description {
+    text-align: justify;
+    display: inline-block;
+    margin-top: 1rem;
   }
 }
 

@@ -43,6 +43,7 @@ const ArtistEvents: React.FunctionComponent<ArtistEventProps> = ({
             }
             event={event}
             artist={artist}
+            showDescription={true}
             onClick={(e) => {
               e.preventDefault();
               handleSelectArtistAndEvent(artist, event);
