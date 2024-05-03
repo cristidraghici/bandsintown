@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, ComponentProps } from "react";
 
-interface ImagePreviewProps {
+interface ImagePreviewProps extends ComponentProps<"div"> {
   thumbUrl: string;
   imageUrl: string;
 }
 
-const ImagePreview: React.FC<ImagePreviewProps> = ({ thumbUrl, imageUrl }) => {
+const ImagePreview: React.FC<ImagePreviewProps> = ({
+  className = "",
+  thumbUrl,
+  imageUrl,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleClick = (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -23,13 +27,11 @@ const ImagePreview: React.FC<ImagePreviewProps> = ({ thumbUrl, imageUrl }) => {
   };
 
   return (
-    <div className="ImagePreview">
-      <img
-        src={thumbUrl}
-        alt="Preview"
-        onClick={handleClick}
-        style={{ cursor: "pointer" }}
-      />
+    <div className={`ImagePreview ${className}`}>
+      <a href="{imageUrl}" target="_blank" onClick={handleClick}>
+        <img src={thumbUrl} alt="Preview" style={{ cursor: "pointer" }} />
+      </a>
+
       {isModalOpen && (
         <div className="ImagePreview_Modal" onClick={handleClose}>
           <img src={imageUrl} alt="Preview" />

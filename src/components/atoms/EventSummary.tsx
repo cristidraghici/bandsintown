@@ -18,7 +18,7 @@ const DESCRIPTION_MAX_LENGTH = 200;
 const EventSummary: React.FunctionComponent<EventSummaryProps> = ({
   artist,
   event,
-  className,
+  className = "",
   showArtistNameInTitle = false,
   showDescription = false,
   ...rest

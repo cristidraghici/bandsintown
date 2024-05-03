@@ -147,9 +147,11 @@
   }
 }
 
-.SelectedEventButton {
-  width: 100%;
-  margin-bottom: 1rem;
+.SelectedEvent {
+  &_Button {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
 }
 
 .EventSummary {

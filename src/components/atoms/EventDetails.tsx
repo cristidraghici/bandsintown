@@ -10,7 +10,7 @@ interface ArtistEventProps extends ComponentProps<"article"> {
 
 const EventDetails: React.FunctionComponent<ArtistEventProps> = ({
   event,
-  className,
+  className = "",
   ...rest
 }) => {
   return (

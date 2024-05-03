@@ -30,7 +30,7 @@ const SelectedEvent: React.FunctionComponent = () => {
       <EventDetails event={selectedEvent} />
 
       <button
-        className={`SelectedEventButton ${className}`}
+        className={`SelectedEvent_Button ${className}`}
         onClick={handleClick}
       >
         {text}

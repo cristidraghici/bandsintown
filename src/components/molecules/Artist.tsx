@@ -26,7 +26,7 @@ const Artist = () => {
   const currentArtist = artist || selectedArtist;
 
   if (!currentArtist) {
-    return <div></div>;
+    return artistName ? <div>No such artist.</div> : <div></div>;
   }
 
   return (

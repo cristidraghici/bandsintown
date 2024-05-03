@@ -14,6 +14,7 @@ interface ArtistEventProps extends ComponentProps<"section"> {
 
 const ArtistEvents: React.FunctionComponent<ArtistEventProps> = ({
   artist,
+  className = "",
   ...rest
 }) => {
   const { handleSelectArtistAndEvent, selectedEvent } = useGlobalContext();
@@ -33,7 +34,7 @@ const ArtistEvents: React.FunctionComponent<ArtistEventProps> = ({
   }
 
   return (
-    <section {...rest}>
+    <section className={`ArtistEvents ${className}`} {...rest}>
       {events.length > 0 &&
         events.map((event) => (
           <EventSummary

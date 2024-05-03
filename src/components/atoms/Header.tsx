@@ -2,7 +2,7 @@ import { ComponentProps } from "react";
 import LogoSVG from "@/assets/logo.svg?react";
 
 const Header: React.FunctionComponent<ComponentProps<"header">> = ({
-  className,
+  className = "",
   ...rest
 }) => {
   return (

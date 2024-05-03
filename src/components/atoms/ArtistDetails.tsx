@@ -12,22 +12,17 @@ interface ArtistDetailsProps extends ComponentProps<"article"> {
 
 const ArtistDetails: React.FunctionComponent<ArtistDetailsProps> = ({
   artist,
-  className,
+  className = "",
   ...rest
 }) => {
   return (
     <article className={`ArtistDetails ${className}`} {...rest}>
       <div className="ArtistDetails_Content">
-        <a
-          href={artist.image_url}
-          target="_blank"
+        <ImagePreview
           className="ArtistDetails_Content_Media"
-        >
-          <ImagePreview
-            thumbUrl={artist.thumb_url}
-            imageUrl={artist.image_url}
-          />
-        </a>
+          thumbUrl={artist.thumb_url}
+          imageUrl={artist.image_url}
+        />
 
         <section className="ArtistDetails_Content_Info">
           <h3>{artist.name}</h3>
