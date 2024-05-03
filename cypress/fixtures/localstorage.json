@@ -1,0 +1,80 @@
+{
+  "favoriteEvents": [
+    {
+      "id": "1031702845",
+      "artist": {
+        "id": "76765",
+        "name": "John",
+        "url": "https://www.bandsintown.com/a/76765?came_from=267&app_id=123",
+        "image_url": "https://photos.bandsintown.com/large/15482954.jpeg",
+        "thumb_url": "https://photos.bandsintown.com/thumb/15482954.jpeg",
+        "facebook_page_url": "http://www.facebook.com/1666357743639455",
+        "mbid": "19ccb0f4-f511-4c39-8f39-fb22ffef02b9",
+        "tracker_count": 7140,
+        "upcoming_event_count": 2
+      },
+      "event": {
+        "id": "1031702845",
+        "artist_id": "76765",
+        "url": "https://www.bandsintown.com/e/1031702845?app_id=123&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "on_sale_datetime": "2024-04-25T10:00:00",
+        "datetime": "2024-07-13T18:00:00",
+        "description": "Powerhouse duo JOHN stretch their limbs at Signature Brew Haggerston, just before heading South to link up with their many time stage mates IDLES. Having gained a reputation as one of the most uncompromising offerings on the UK live circuit, JOHN make a return to their native ground have formed in the East End of London a decade ago,",
+        "venue": {
+          "name": "Signature Brew Haggerston",
+          "latitude": "51.51279",
+          "longitude": "-0.09184",
+          "city": "City Of London",
+          "region": "",
+          "country": "United Kingdom"
+        },
+        "offers": [
+          {
+            "type": "Tickets",
+            "url": "https://www.bandsintown.com/t/1031702845?app_id=123&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket",
+            "status": "available"
+          }
+        ],
+        "lineup": ["John"]
+      }
+    },
+    {
+      "id": "1030848721",
+      "artist": {
+        "id": "104",
+        "name": "JoJo",
+        "url": "https://www.bandsintown.com/a/104?came_from=267&app_id=123",
+        "image_url": "https://photos.bandsintown.com/large/10153739.jpeg",
+        "thumb_url": "https://photos.bandsintown.com/thumb/10153739.jpeg",
+        "facebook_page_url": "http://www.facebook.com/328378178454",
+        "mbid": "ed29398b-bbf3-42a0-8eff-8631509c271d",
+        "tracker_count": 397813,
+        "upcoming_event_count": 6
+      },
+      "event": {
+        "id": "1030848721",
+        "artist_id": "104",
+        "url": "https://www.bandsintown.com/e/1030848721?app_id=123&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "on_sale_datetime": "2024-02-09T12:00:00",
+        "datetime": "2024-05-16T13:15:00",
+        "description": "",
+        "venue": {
+          "name": "Kultturitalo Valve, Valvesali",
+          "latitude": "65.01236",
+          "longitude": "25.46816",
+          "city": "Oulu",
+          "region": "",
+          "country": "Finland"
+        },
+        "offers": [
+          {
+            "type": "Tickets",
+            "url": "https://www.bandsintown.com/t/1030848721?app_id=123&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket",
+            "status": "available"
+          }
+        ],
+        "lineup": ["JoJo"]
+      }
+    }
+  ]
+}

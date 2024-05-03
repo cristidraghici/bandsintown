@@ -1,4 +1,7 @@
 import { defineConfig } from "cypress";
+import { config as dotenvConfig } from "dotenv";
+
+dotenvConfig();
 
 export default defineConfig({
   video: false,
@@ -8,5 +11,12 @@ export default defineConfig({
     video: false,
     viewportWidth: 1920,
     viewportHeight: 1080,
+    setupNodeEvents(on, config) {
+      config.env = {
+        ...process.env,
+        ...config.env,
+      };
+      return config;
+    },
   },
 });
