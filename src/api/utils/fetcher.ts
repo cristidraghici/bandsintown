@@ -10,6 +10,7 @@ const fetcher = async <T>([url, options = {}]: [
       "Content-Type": "application/json",
       ...options.headers,
     },
+    cache: "force-cache",
   });
 
   if (!res.ok) {
