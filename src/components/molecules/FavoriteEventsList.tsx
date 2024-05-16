@@ -6,7 +6,7 @@ import scrollToTop from "@/utils/scrollToTop";
 
 const FavoriteEventsList = () => {
   const { favoriteEvents } = useFavoriteEvents();
-  const { setArtistName, handleSelectArtistAndEvent, selectedEvent } =
+  const { setArtistName, setSelectedArtist, setSelectedEvent, selectedEvent } =
     useGlobalContext();
 
   if (favoriteEvents.length === 0) {
@@ -28,7 +28,8 @@ const FavoriteEventsList = () => {
             e.preventDefault();
             setArtistName("");
             scrollToTop();
-            handleSelectArtistAndEvent(artist, event);
+            setSelectedArtist(artist);
+            setSelectedEvent(event);
           }}
         />
       ))}

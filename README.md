@@ -91,6 +91,10 @@ We will next implement the favorites list. For the sake of simplicity and for sa
 
 The first thing we will do is persist the favorites into localStorage. Since localStorage is [pretty generous](https://web.dev/articles/storage-for-the-web#:%7E:text=LocalStorage%20should%20be%20avoided%20because,web%20workers%20or%20service%20workers) with the space, we will store the information about the favorite event there. However, we will add a minimal safety net with cleaning the loaded content of events which already happened.
 
+## Global state management
+
+We don't have much state that we need to manage, so React's context will do just fine. We will use a global state to store the data, but we will spit it into smaller bits. Since we are in react, we will split them in hooks which are supposed to be used only when creating the global context.
+
 ## Final thoughts
 
 - I have started the implementation with the implicit assumption that CORS will not be a problem. Had I known in the beginning, I would have probably picked Next.js for the job, since it should solve the CORS issue out of the box with SSR. To continue with the current implementation, I have implemented a proxy in SlimPHP, which should be fairly easy to access. It's not the best language/solution for creating a CORS proxy, but it's only supposed to work and advance us in the frontend challenge. See the readme in `./proxy` for more info. An example `.env` file for the app with the proxy is:

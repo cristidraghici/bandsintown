@@ -17,7 +17,8 @@ const ArtistEvents: React.FunctionComponent<ArtistEventProps> = ({
   className = "",
   ...rest
 }) => {
-  const { handleSelectArtistAndEvent, selectedEvent } = useGlobalContext();
+  const { setSelectedArtist, setSelectedEvent, selectedEvent } =
+    useGlobalContext();
 
   const {
     events,
@@ -47,7 +48,9 @@ const ArtistEvents: React.FunctionComponent<ArtistEventProps> = ({
             showDescription={true}
             onClick={(e) => {
               e.preventDefault();
-              handleSelectArtistAndEvent(artist, event);
+              setSelectedArtist(artist);
+              setSelectedEvent(event);
+
               scrollToTop();
             }}
           />
