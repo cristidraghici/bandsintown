@@ -4,13 +4,39 @@
 
 ## How to run
 
-To view the app locally:
+There are 2 ways in which you can run this application:
+
+1. directly with the proxy started manually;
+2. with docker-compose, with both the React and the SlimPHP proxy started automatically.
+
+In either case, a proxy will be used to bypass the CORS setting with the API. And in both cases you must set the environment file upfront:
 
 - `cp .env.example .env` and edit the file to add the proper values
+
+### Directly
+
 - `npm ci`
 - `npm run dev`
 
-Should you need the proxy, check the readme inside the `./proxy` folder of this project.
+The commands to run the proxy directly are:
+
+- `cd ./proxy`
+- `docker build -t slim-proxy .`
+- `docker run -d -p 8080:8080 slim-proxy`
+
+Useful commands:
+
+- `docker run -d -v "/$(pwd -W)/proxy:/app" -p 8080:8080 slim-proxy`
+
+Once started, you can access the api at: [http://localhost:8080](http://localhost:8080).
+
+### docker-compose
+
+By using docker-compose, you lose some of the speed with with the FE changes are made (since a sync with the container must happen), but you gain comfort with setting up and starting your environment. The command to start is:
+
+- `docker compose up -d`
+
+With this solution, the proxy will run on the same port, but the app will be available on port 3001. This way, you will still be able to run vite locally, should you prefer that.
 
 ## The plan
 

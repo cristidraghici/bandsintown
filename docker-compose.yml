@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  react:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+      - /usr/src/app/node_modules # make sure that this folder is protected against sync
+      - ./:/usr/src/app
+    environment:
+      NODE_ENV: docker
+      CHOKIDAR_USEPOLLING: "true"
+    ports:
+      - "3001:3001"
+
+  slim:
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+      - /var/www/html/api/vendor # make sure that this folder is protected against sync
+      - ./proxy:/var/www/html
+    ports:
+      - "8080:8080"
+
+networks:
+  default:
+    name: dev
