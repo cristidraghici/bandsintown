@@ -2,7 +2,7 @@ import { ComponentProps } from "react";
 import EventSummary from "@/components/atoms/EventSummary";
 
 import useGlobalContext from "@/hooks/useGlobalContext";
-import useGetArtistsEvents from "@/api/useGetArtistsEvents";
+import useGetArtistsEvents from "@/hooks/api/useGetArtistsEvents";
 
 import scrollToTop from "@/utils/scrollToTop";
 

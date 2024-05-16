@@ -3,7 +3,7 @@ import ArtistEvents from "./ArtistEvents";
 
 import useGlobalContext from "@/hooks/useGlobalContext";
 
-import useGetArtists from "@/api/useGetArtists";
+import useGetArtists from "@/hooks/api/useGetArtists";
 import type { Artist } from "@/types";
 
 const Artist = () => {
